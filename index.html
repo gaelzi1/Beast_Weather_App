@@ -1,61 +1,56 @@
 <!DOCTYPE html>
 <html lang="es" class="bg-gray-200">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard del Clima | Gráficas Avanzadas</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .day-card.active-day {
-            background-color: #3b82f6; /* bg-blue-500 */
-            color: white;
-        }
-        .day-card.active-day p {
-            color: white;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard del Clima | Gráficas Avanzadas</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .day-card.active-day {
+      background-color: #3b82f6;
+      color: white;
+    }
+    .day-card.active-day p {
+      color: white;
+    }
+  </style>
 </head>
+
 <body class="flex h-screen font-sans text-gray-800">
+  <aside class="w-80 bg-white shadow-xl flex flex-col">
+    <div id="sidebar-weather-content" class="p-6 text-center border-b flex flex-col items-center"></div>
+    <nav id="day-navigation" class="flex-1 p-4 space-y-2 overflow-y-auto"></nav>
+    <div class="p-4 border-t text-center text-xs text-gray-400">Beast Weather © 2025</div>
+  </aside>
 
-    <aside class="w-80 bg-white shadow-xl flex flex-col">
-        <div id="sidebar-weather-content" class="p-6 text-center border-b flex flex-col items-center">
-             <i class="fas fa-spinner fa-spin text-3xl text-blue-500 mt-10"></i>
-        </div>
-        <nav id="day-navigation" class="flex-1 p-4 space-y-2 overflow-y-auto"></nav>
-        <div class="p-4 border-t text-center text-xs text-gray-400">
-            
-        </div>
-    </aside>
+  <main class="flex-1 p-8 overflow-y-auto">
+    <header class="mb-6">
+      <h2 class="text-3xl font-bold">Detalles del Pronóstico</h2>
+      <p id="selected-date" class="text-gray-500">Selecciona un día para ver los detalles</p>
+    </header>
 
-    <main class="flex-1 p-8 overflow-y-auto">
-        <header class="mb-6">
-            <h2 class="text-3xl font-bold">Detalles del Pronóstico</h2>
-            <p id="selected-date" class="text-gray-500">Selecciona un día para ver los detalles</p>
-        </header>
+    <section id="info-section" class="mb-6"></section>
+    <section id="details-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"></section>
 
-        <section id="info-section" class="mb-6"></section>
-        
-        <section id="details-cards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"></section>
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="font-semibold text-gray-700 mb-4">Temperatura (°C)</h3>
+        <canvas id="temp-chart"></canvas>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="font-semibold text-gray-700 mb-4">Humedad (%)</h3>
+        <canvas id="humidity-chart"></canvas>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="font-semibold text-gray-700 mb-4">Viento (km/h)</h3>
+        <canvas id="wind-chart"></canvas>
+      </div>
+    </section>
+  </main>
 
-        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-semibold text-gray-700 mb-4">Temperatura (°C)</h3>
-                <canvas id="temp-chart"></canvas>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-semibold text-gray-700 mb-4">Humedad (%)</h3>
-                <canvas id="humidity-chart"></canvas>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-semibold text-gray-700 mb-4">Viento (km/h)</h3>
-                <canvas id="wind-chart"></canvas>
-            </div>
-        </section>
-    </main>
-    
-    <script src="script.js"></script>
+  <script type="module" src="./src/main.js"></script>
 </body>
 </html>
